@@ -1,0 +1,22 @@
+.container {
+  text-align: center;
+}
+
+.spinner {
+  display: inline-block;
+  margin: 0.5rem auto;
+  height: 2.5rem;
+  width: 2.5rem;
+  border-radius: 50%;
+  border-width: 3px;
+  border-style: solid;
+  border-color: var(--color__primary);
+  border-left-color: transparent;
+  animation: spinner 0.75s linear infinite;
+}
+
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
