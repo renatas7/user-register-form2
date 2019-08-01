@@ -3,12 +3,16 @@ import { actions } from '../../state';
 import { connect } from 'react-redux';
 
 import styles from './formModal.module.scss';
-import { Backdrop } from './../../components';
+import { Backdrop, Button } from './../../components';
 
 const FormModal = ({ dispatch, open }) => {
-  const onCancel = () => {
+  const cancel = () => {
     console.log('cancel clicked');
     dispatch(actions.dashboard.setRegisterModalOpenAction(false));
+  };
+
+  const save = () => {
+    console.log('save');
   };
   return (
     open && (
@@ -21,17 +25,20 @@ const FormModal = ({ dispatch, open }) => {
           aria-labelledby="modal__title"
           aria-describedby="modal__desc"
         >
-          <button className={styles.close} onClick={onCancel}>
-            X
-          </button>
-
           <h3 className={styles.title} id="modal__title">
             Fill the form
           </h3>
 
           <div className={styles.content}></div>
-          <button>save</button>
-          <button onClick={onCancel}>cancel</button>
+
+          <div className={styles.actions}>
+            <Button color="primary" onClick={save}>
+              Save
+            </Button>
+            <Button color="outline" onClick={cancel}>
+              Cancel
+            </Button>
+          </div>
         </div>
         <Backdrop />
       </>

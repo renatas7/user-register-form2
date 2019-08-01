@@ -1,7 +1,8 @@
 import React, { useEffect, useCallback } from 'react';
 import { actions } from './../../state/actions';
 import { connect } from 'react-redux';
-import { WithSpinner, Paper } from '../../components';
+import { WithSpinner, Paper, Button } from '../../components';
+import styles from './home.module.scss';
 
 const Home = ({ dispatch, loading }) => {
   const fetchSelectedLocation = useCallback(
@@ -21,7 +22,11 @@ const Home = ({ dispatch, loading }) => {
   return (
     <WithSpinner loading={loading}>
       <Paper>
-        <button onClick={openForm}>Add new user</button>
+        <div className={styles.container}>
+          <Button color="primary" onClick={openForm}>
+            Add New User
+          </Button>
+        </div>
       </Paper>
     </WithSpinner>
   );

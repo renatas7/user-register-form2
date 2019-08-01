@@ -10,6 +10,7 @@
   top: 20%;
   left: 50%;
   transform: translate(-50%, -50%);
+  text-align: center;
 
   .close {
     display: inline-block;
@@ -26,5 +27,11 @@
 
   .content {
     padding: 4rem 4rem 3rem 4rem;
+  }
+  .actions {
+    display: flex;
+    justify-content: space-between;
+    width: 29rem;
+    margin: auto auto 2rem auto;
   }
 }
