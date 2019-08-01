@@ -19,7 +19,7 @@ const updateDashboardAction = () => {
   };
 };
 
-const setDashboardDataAction = payload => {
+const setformDataAction = payload => {
   return {
     type: constants.dashboard.SET_DASHBOARD_DATA,
     payload,
@@ -37,6 +37,6 @@ export const userActions = {
   clearUserStateAction,
   updateDashboardAction,
   setUserOnSyncFlagAction,
-  setDashboardDataAction,
+  setformDataAction,
   setRegisterModalOpenAction,
 };

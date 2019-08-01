@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { actions } from '../../state';
 import { connect } from 'react-redux';
-
 import styles from './formModal.module.scss';
-import { Backdrop, Button } from './../../components';
+import { Backdrop, Button, Input } from './../../components';
+import Form from './../../blocks/form/form';
 
 const FormModal = ({ dispatch, open }) => {
+  const data = null;
+  const [values, setValues] = useState({
+    soackingOff: data !== null ? data.options : '',
+  });
   const cancel = () => {
     console.log('cancel clicked');
     dispatch(actions.dashboard.setRegisterModalOpenAction(false));
@@ -13,6 +17,10 @@ const FormModal = ({ dispatch, open }) => {
 
   const save = () => {
     console.log('save');
+  };
+
+  const handleInputChange = ({ target: { name, value } }) => {
+    setValues({ ...values, [name]: value });
   };
   return (
     open && (
@@ -29,7 +37,9 @@ const FormModal = ({ dispatch, open }) => {
             Fill the form
           </h3>
 
-          <div className={styles.content}></div>
+          <div className={styles.content}>
+            <Form />
+          </div>
 
           <div className={styles.actions}>
             <Button color="primary" onClick={save}>

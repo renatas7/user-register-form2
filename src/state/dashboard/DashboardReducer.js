@@ -3,7 +3,12 @@ import { constants } from '../constants';
 const INITIAL_STATE = {
   isOnSync: false,
   registerModalIsOpen: false,
-  dashboardData: {},
+  formData: {
+    name: '',
+    surname: '',
+    email: '',
+    address: '',
+  },
 };
 
 export const userReducer = (state = INITIAL_STATE, action) => {
@@ -13,16 +18,16 @@ export const userReducer = (state = INITIAL_STATE, action) => {
         ...state,
         isOnSync: action.flag,
       };
-    case constants.dashboard.UPDATE_DASHBOARD_DATA:
-      return {
-        ...state,
-        dashboardData: action,
-      };
-    case constants.dashboard.SET_DASHBOARD_DATA:
-      return {
-        ...state,
-        dashboardData: action.payload,
-      };
+    // case constants.dashboard.UPDATE_DASHBOARD_DATA:
+    //   return {
+    //     ...state,
+    //     formData: action,
+    //   };
+    // case constants.dashboard.SET_DASHBOARD_DATA:
+    //   return {
+    //     ...state,
+    //     formData: action.payload,
+    //   };
     case constants.dashboard.REGISTER_MODAL_OPEN:
       return {
         ...state,

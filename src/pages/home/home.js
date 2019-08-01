@@ -33,7 +33,7 @@ const Home = ({ dispatch, loading }) => {
 };
 
 const mapStateToProps = state => ({
-  dashboardData: state.dashboardState.dashboardData,
+  formData: state.dashboardState.formData,
   loading: state.dashboardState.isOnSync,
 });
 

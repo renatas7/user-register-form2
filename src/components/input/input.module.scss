@@ -1,0 +1,11 @@
+.input {
+  background: var(--color__input-bg);
+  border: 1px solid transparent;
+  border-radius: var(--border-radius__md);
+  display: block;
+  width: 100%;
+  font-size: 1.4rem;
+  color: var(--color__font-dark);
+  padding: 1rem;
+  margin: 1rem auto;
+}
