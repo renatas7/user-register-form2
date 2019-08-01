@@ -1,3 +1,10 @@
+html {
+  font-size: 62.5%; // 10px
+  box-sizing: border-box;
+  line-height: 1;
+  margin: 0;
+}
+
 body {
   font-family: 'Open Sans', sans-serif;
   background: var(--color__grey-lighter);

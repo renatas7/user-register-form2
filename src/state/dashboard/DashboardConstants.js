@@ -3,4 +3,5 @@ export const dashboardConstants = {
   CLEAR_USER_STATE: 'dashboard/CLEAR_USER_STATE',
   SET_ON_SYNC_FLAG: 'dashboard/SET_ON_SYNC_FLAG',
   SET_DASHBOARD_DATA: 'dashboard/SET_DASHBOARD_DATA',
+  REGISTER_MODAL_OPEN: 'dashboard/REGISTER_MODAL_OPEN',
 };

@@ -10,7 +10,7 @@ export const modalsReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case constants.modals.SET_MODAL_VISIBLE_FLAG:
       const { payload } = action;
-      const key: string = payload.modalName + 'Visible';
+      const key = payload.modalName + 'Visible';
       return {
         ...state,
         [key]: payload.visible,

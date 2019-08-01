@@ -1,7 +1,7 @@
 import React, { useEffect, useCallback } from 'react';
 import { actions } from './../../state/actions';
 import { connect } from 'react-redux';
-import { WithSpinner } from '../../components';
+import { WithSpinner, Paper } from '../../components';
 
 const Home = ({ dispatch, loading }) => {
   const fetchSelectedLocation = useCallback(
@@ -14,9 +14,15 @@ const Home = ({ dispatch, loading }) => {
     fetchSelectedLocation();
   }, [fetchSelectedLocation]);
 
+  const openForm = () => {
+    dispatch(actions.dashboard.setRegisterModalOpenAction(true));
+  };
+
   return (
     <WithSpinner loading={loading}>
-      <div>Home page</div>
+      <Paper>
+        <button onClick={openForm}>Add new user</button>
+      </Paper>
     </WithSpinner>
   );
 };

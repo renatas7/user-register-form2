@@ -26,9 +26,17 @@ const setDashboardDataAction = payload => {
   };
 };
 
+const setRegisterModalOpenAction = payload => {
+  return {
+    type: constants.dashboard.REGISTER_MODAL_OPEN,
+    payload,
+  };
+};
+
 export const userActions = {
   clearUserStateAction,
   updateDashboardAction,
   setUserOnSyncFlagAction,
   setDashboardDataAction,
+  setRegisterModalOpenAction,
 };

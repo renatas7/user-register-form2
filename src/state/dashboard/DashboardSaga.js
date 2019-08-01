@@ -1,13 +1,11 @@
 import { actions } from '../actions';
-import { call, put } from 'redux-saga/effects';
-import { Api } from './../../api/api';
+import { put } from 'redux-saga/effects';
 
 function* updateUserDetailsSaga() {
   try {
     yield put(actions.dashboard.setUserOnSyncFlagAction(true));
-    const data = yield call(Api.updateDashboardDetails);
-    yield put(actions.dashboard.setDashboardDataAction(data));
-    console.log(data);
+
+    console.log('saga was called');
   } catch (error) {
     console.log(error);
   } finally {

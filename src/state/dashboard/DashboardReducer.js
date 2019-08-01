@@ -2,6 +2,7 @@ import { constants } from '../constants';
 
 const INITIAL_STATE = {
   isOnSync: false,
+  registerModalIsOpen: false,
   dashboardData: {},
 };
 
@@ -21,6 +22,11 @@ export const userReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         dashboardData: action.payload,
+      };
+    case constants.dashboard.REGISTER_MODAL_OPEN:
+      return {
+        ...state,
+        registerModalIsOpen: action.payload,
       };
 
     default:
