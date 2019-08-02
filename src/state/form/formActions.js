@@ -20,10 +20,23 @@ const setRegisterModalOpenAction = payload => {
   };
 };
 
-const updateFillingForm = payload => {
+const formState = payload => {
   return {
     type: constants.form.UPDATE_FILLING_FORM,
     payload,
+  };
+};
+
+const addUser = payload => {
+  return {
+    type: constants.form.ADD_USER,
+    payload,
+  };
+};
+
+const clearForm = () => {
+  return {
+    type: constants.form.CLEAR_FORM,
   };
 };
 
@@ -31,5 +44,7 @@ export const userActions = {
   updateDashboardAction,
   setUserOnSyncFlagAction,
   setRegisterModalOpenAction,
-  updateFillingForm,
+  formState,
+  addUser,
+  clearForm,
 };

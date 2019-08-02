@@ -9,6 +9,7 @@ const INITIAL_STATE = {
     email: '',
     address: '',
   },
+  usersList: [],
 };
 
 export const userReducer = (state = INITIAL_STATE, action) => {
@@ -27,6 +28,21 @@ export const userReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         formData: { ...action.payload },
+      };
+    case constants.form.CLEAR_FORM:
+      return {
+        ...state,
+        formData: {
+          name: '',
+          surname: '',
+          email: '',
+          address: '',
+        },
+      };
+    case constants.form.ADD_USER:
+      return {
+        ...state,
+        usersList: [...state.usersList, action.payload],
       };
 
     default:

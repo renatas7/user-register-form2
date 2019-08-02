@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { actions } from './../../state';
 import { Input } from './../../components';
@@ -19,8 +19,7 @@ const Form = ({ data, dispatch }) => {
       email: values.email,
       address: values.address,
     };
-
-    dispatch(actions.form.updateFillingForm(formData));
+    dispatch(actions.form.formState(formData));
   };
 
   return (
@@ -58,7 +57,7 @@ const Form = ({ data, dispatch }) => {
 };
 
 const mapStateToProps = state => ({
-  data: state.dashboardState.formData,
+  data: state.formState.formData,
 });
 
 export default connect(mapStateToProps)(Form);

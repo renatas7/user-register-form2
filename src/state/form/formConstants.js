@@ -3,4 +3,6 @@ export const formConstants = {
   SET_ON_SYNC_FLAG: 'form/SET_ON_SYNC_FLAG',
   REGISTER_MODAL_OPEN: 'form/REGISTER_MODAL_OPEN',
   UPDATE_FILLING_FORM: 'form/UPDATE_FILLING_FORM',
+  ADD_USER: 'form/ADD_USER',
+  CLEAR_FORM: 'form/CLEAR_FORM',
 };

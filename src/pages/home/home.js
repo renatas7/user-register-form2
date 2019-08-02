@@ -33,8 +33,8 @@ const Home = ({ dispatch, loading }) => {
 };
 
 const mapStateToProps = state => ({
-  formData: state.dashboardState.formData,
-  loading: state.dashboardState.isOnSync,
+  formData: state.formState.formData,
+  loading: state.formState.isOnSync,
 });
 
 export default connect(mapStateToProps)(Home);

@@ -2,17 +2,18 @@ import React from 'react';
 import { actions } from '../../state';
 import { connect } from 'react-redux';
 import styles from './formModal.module.scss';
-import { Backdrop, Button, Input } from './../../components';
+import { Backdrop, Button } from './../../components';
 import Form from './../../blocks/form/form';
 
-const FormModal = ({ dispatch, open }) => {
+const FormModal = ({ dispatch, open, formData }) => {
   const cancel = () => {
-    console.log('cancel clicked');
     dispatch(actions.form.setRegisterModalOpenAction(false));
   };
 
   const save = () => {
-    console.log('save');
+    dispatch(actions.form.addUser(formData));
+    dispatch(actions.form.clearForm());
+    dispatch(actions.form.setRegisterModalOpenAction(false));
   };
 
   return (
@@ -49,7 +50,8 @@ const FormModal = ({ dispatch, open }) => {
   );
 };
 const mapStateToProps = state => ({
-  open: state.dashboardState.registerModalIsOpen,
+  open: state.formState.registerModalIsOpen,
+  formData: state.formState.formData,
 });
 
 export default connect(mapStateToProps)(FormModal);
