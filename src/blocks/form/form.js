@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { actions } from './../../state';
 import { Input } from './../../components';
+import PropTypes from 'prop-types';
 
 const Form = ({ data, dispatch }) => {
   const [values, setValues] = useState({
@@ -59,5 +60,15 @@ const Form = ({ data, dispatch }) => {
 const mapStateToProps = state => ({
   data: state.formState.formData,
 });
+
+Form.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  data: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    surname: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    address: PropTypes.string.isRequired,
+  }),
+};
 
 export default connect(mapStateToProps)(Form);

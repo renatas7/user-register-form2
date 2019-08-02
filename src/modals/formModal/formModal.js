@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import styles from './formModal.module.scss';
 import { Backdrop, Button } from './../../components';
 import Form from './../../blocks/form/form';
+import PropTypes from 'prop-types';
 
 const FormModal = ({ dispatch, open, formData }) => {
   const cancel = () => {
@@ -53,5 +54,16 @@ const mapStateToProps = state => ({
   open: state.formState.registerModalIsOpen,
   formData: state.formState.formData,
 });
+
+FormModal.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  open: PropTypes.bool.isRequired,
+  formData: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    surname: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    address: PropTypes.string.isRequired,
+  }),
+};
 
 export default connect(mapStateToProps)(FormModal);
