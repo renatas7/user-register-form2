@@ -13,25 +13,20 @@ const INITIAL_STATE = {
 
 export const userReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case constants.dashboard.SET_ON_SYNC_FLAG:
+    case constants.form.SET_ON_SYNC_FLAG:
       return {
         ...state,
         isOnSync: action.flag,
       };
-    // case constants.dashboard.UPDATE_DASHBOARD_DATA:
-    //   return {
-    //     ...state,
-    //     formData: action,
-    //   };
-    // case constants.dashboard.SET_DASHBOARD_DATA:
-    //   return {
-    //     ...state,
-    //     formData: action.payload,
-    //   };
-    case constants.dashboard.REGISTER_MODAL_OPEN:
+    case constants.form.REGISTER_MODAL_OPEN:
       return {
         ...state,
         registerModalIsOpen: action.payload,
+      };
+    case constants.form.UPDATE_FILLING_FORM:
+      return {
+        ...state,
+        formData: { ...action.payload },
       };
 
     default:

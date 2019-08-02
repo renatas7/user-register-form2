@@ -1,7 +1,7 @@
-import { dashboardConstants } from './dashboard/DashboardConstants';
+import { formConstants } from './form/formConstants';
 import { modalsConstants } from './modals/ModalsConstants';
 
 export const constants = {
-  dashboard: dashboardConstants,
+  form: formConstants,
   modals: modalsConstants,
 };

@@ -1,13 +1,10 @@
 import { constants } from './constants';
 import { takeLatest, all, call } from 'redux-saga/effects';
 
-import { updateUserDetailsSaga } from './dashboard/DashboardSaga';
+import { updateForm } from './form/formSaga';
 
 function* actionWatcher() {
-  yield takeLatest(
-    constants.dashboard.UPDATE_DASHBOARD_DATA,
-    updateUserDetailsSaga
-  );
+  yield takeLatest(constants.form.UPDATE_DASHBOARD_DATA, updateForm);
 }
 
 export default function* rootSaga() {

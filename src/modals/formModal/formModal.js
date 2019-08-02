@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { actions } from '../../state';
 import { connect } from 'react-redux';
 import styles from './formModal.module.scss';
@@ -6,22 +6,15 @@ import { Backdrop, Button, Input } from './../../components';
 import Form from './../../blocks/form/form';
 
 const FormModal = ({ dispatch, open }) => {
-  const data = null;
-  const [values, setValues] = useState({
-    soackingOff: data !== null ? data.options : '',
-  });
   const cancel = () => {
     console.log('cancel clicked');
-    dispatch(actions.dashboard.setRegisterModalOpenAction(false));
+    dispatch(actions.form.setRegisterModalOpenAction(false));
   };
 
   const save = () => {
     console.log('save');
   };
 
-  const handleInputChange = ({ target: { name, value } }) => {
-    setValues({ ...values, [name]: value });
-  };
   return (
     open && (
       <>

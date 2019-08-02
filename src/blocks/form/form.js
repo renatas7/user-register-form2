@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
+import { actions } from './../../state';
 import { Input } from './../../components';
 
 const Form = ({ data, dispatch }) => {
@@ -12,20 +13,16 @@ const Form = ({ data, dispatch }) => {
 
   const handleInputChange = ({ target: { name, value } }) => {
     setValues({ ...values, [name]: value });
+    const formData = {
+      name: values.name,
+      surname: values.surname,
+      email: values.email,
+      address: values.address,
+    };
+
+    dispatch(actions.form.updateFillingForm(formData));
   };
 
-  useEffect(() => {
-    const formData = [
-      {
-        name: values.name,
-        surname: values.surname,
-        email: values.email,
-        address: values.address,
-      },
-    ];
-    console.log(formData);
-  });
-  console.log(values);
   return (
     <div>
       <Input

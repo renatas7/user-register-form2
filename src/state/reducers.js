@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { userReducer } from './dashboard/DashboardReducer';
+import { userReducer } from './form/formReducer';
 import { modalsReducer } from './modals/ModalsReducer';
 
 export const reducers = combineReducers({

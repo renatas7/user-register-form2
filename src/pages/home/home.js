@@ -7,7 +7,7 @@ import styles from './home.module.scss';
 const Home = ({ dispatch, loading }) => {
   const fetchSelectedLocation = useCallback(
     id => {
-      dispatch(actions.dashboard.updateDashboardAction());
+      dispatch(actions.form.updateDashboardAction());
     },
     [dispatch]
   );
@@ -16,7 +16,7 @@ const Home = ({ dispatch, loading }) => {
   }, [fetchSelectedLocation]);
 
   const openForm = () => {
-    dispatch(actions.dashboard.setRegisterModalOpenAction(true));
+    dispatch(actions.form.setRegisterModalOpenAction(true));
   };
 
   return (
