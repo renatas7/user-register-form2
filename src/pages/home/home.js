@@ -1,11 +1,18 @@
 import React, { useEffect, useCallback } from 'react';
 import { actions } from './../../state/actions';
 import { connect } from 'react-redux';
-import { WithSpinner, Paper, Button } from '../../components';
+import {
+  WithSpinner,
+  Paper,
+  Button,
+  Table,
+  TableRow,
+  TableCell,
+} from '../../components';
 import styles from './home.module.scss';
 import PropTypes from 'prop-types';
 
-const Home = ({ dispatch, loading }) => {
+const Home = ({ dispatch, loading, usersList }) => {
   const fetchSelectedLocation = useCallback(
     id => {
       dispatch(actions.form.updateDashboardAction());
@@ -20,6 +27,18 @@ const Home = ({ dispatch, loading }) => {
     dispatch(actions.form.setRegisterModalOpenAction(true));
   };
 
+  const tableHeader = ['Name', 'Surname', 'Email', 'Address'];
+
+  const renderTable = () =>
+    usersList.map(({ id, name, surname, email, address }) => (
+      <TableRow key={id}>
+        <TableCell>{name}</TableCell>
+        <TableCell>{surname}</TableCell>
+        <TableCell>{email}</TableCell>
+        <TableCell>{address}</TableCell>
+      </TableRow>
+    ));
+
   return (
     <WithSpinner loading={loading}>
       <Paper>
@@ -28,24 +47,21 @@ const Home = ({ dispatch, loading }) => {
             Add New User
           </Button>
         </div>
+        <Table header={tableHeader} filter={true} isEmpty={!usersList.length}>
+          {renderTable()}
+        </Table>
       </Paper>
     </WithSpinner>
   );
 };
 
 const mapStateToProps = state => ({
-  formData: state.formState.formData,
+  usersList: state.formState.usersList,
   loading: state.formState.isOnSync,
 });
 
 Home.propTypes = {
   loading: PropTypes.bool.isRequired,
-  formData: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    surname: PropTypes.string.isRequired,
-    email: PropTypes.string.isRequired,
-    address: PropTypes.string.isRequired,
-  }),
 };
 
 export default connect(mapStateToProps)(Home);

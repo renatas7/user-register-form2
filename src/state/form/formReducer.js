@@ -4,6 +4,7 @@ const INITIAL_STATE = {
   isOnSync: false,
   registerModalIsOpen: false,
   formData: {
+    id: null,
     name: '',
     surname: '',
     email: '',
@@ -33,6 +34,7 @@ export const userReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         formData: {
+          id: null,
           name: '',
           surname: '',
           email: '',

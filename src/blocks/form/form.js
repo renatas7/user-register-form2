@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { actions } from './../../state';
 import { Input } from './../../components';
+// import styles from './form.module.scss';
 import PropTypes from 'prop-types';
 
 const Form = ({ data, dispatch }) => {
@@ -20,6 +21,7 @@ const Form = ({ data, dispatch }) => {
       email: values.email,
       address: values.address,
     };
+
     dispatch(actions.form.formState(formData));
   };
 
@@ -32,6 +34,7 @@ const Form = ({ data, dispatch }) => {
         value={values.name}
         placeholder="Name"
       />
+      {/* <p className={styles.validationMessage}>Name is required </p> */}
       <Input
         name="surname"
         type="string"

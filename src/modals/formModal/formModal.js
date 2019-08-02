@@ -12,7 +12,30 @@ const FormModal = ({ dispatch, open, formData }) => {
   };
 
   const save = () => {
-    dispatch(actions.form.addUser(formData));
+    // if (
+    //   formData.name.length === 0 ||
+    //   formData.surname.length === 0 ||
+    //   formData.email.length === 0 ||
+    //   formData.address.length === 0
+    // ) {
+    //   console.log('not valid');
+    // }
+
+    // if (formData.name.length === 0) {
+    //   console.log('Name is required');
+    // } else if (formData.surname.length === 0) {
+    //   console.log('Surname is required');
+    // }
+
+    // const hasEmptyInput = Object.values(formData).every(x => (x === null || x === ''));
+    // console.log(hasEmptyInput);
+    const data = {
+      id: Date.now(),
+      ...formData,
+    };
+    console.log(data);
+
+    dispatch(actions.form.addUser(data));
     dispatch(actions.form.clearForm());
     dispatch(actions.form.setRegisterModalOpenAction(false));
   };
