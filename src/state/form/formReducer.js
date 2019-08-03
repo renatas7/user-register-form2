@@ -10,6 +10,7 @@ const INITIAL_STATE = {
     email: '',
     address: '',
   },
+  editingUserId: null,
   usersList: [],
 };
 
@@ -30,6 +31,11 @@ export const userReducer = (state = INITIAL_STATE, action) => {
         ...state,
         formData: { ...action.payload },
       };
+    case constants.form.PUSH_EDITED_USERS_DATA:
+      return {
+        ...state,
+        usersList: [...action.payload],
+      };
     case constants.form.CLEAR_FORM:
       return {
         ...state,
@@ -40,13 +46,18 @@ export const userReducer = (state = INITIAL_STATE, action) => {
           email: '',
           address: '',
         },
+        editingUserId: null,
       };
     case constants.form.ADD_USER:
       return {
         ...state,
         usersList: [...state.usersList, action.payload],
       };
-
+    case constants.form.EDITING_USER_ID:
+      return {
+        ...state,
+        editingUserId: action.payload,
+      };
     default:
       return state;
   }

@@ -1,45 +1,11 @@
 import React from 'react';
-import { actions } from '../../state';
 import { connect } from 'react-redux';
 import styles from './formModal.module.scss';
-import { Backdrop, Button } from './../../components';
+import { Backdrop } from './../../components';
 import Form from './../../blocks/form/form';
 import PropTypes from 'prop-types';
 
-const FormModal = ({ dispatch, open, formData }) => {
-  const cancel = () => {
-    dispatch(actions.form.setRegisterModalOpenAction(false));
-  };
-
-  const save = () => {
-    // if (
-    //   formData.name.length === 0 ||
-    //   formData.surname.length === 0 ||
-    //   formData.email.length === 0 ||
-    //   formData.address.length === 0
-    // ) {
-    //   console.log('not valid');
-    // }
-
-    // if (formData.name.length === 0) {
-    //   console.log('Name is required');
-    // } else if (formData.surname.length === 0) {
-    //   console.log('Surname is required');
-    // }
-
-    // const hasEmptyInput = Object.values(formData).every(x => (x === null || x === ''));
-    // console.log(hasEmptyInput);
-    const data = {
-      id: Date.now(),
-      ...formData,
-    };
-    console.log(data);
-
-    dispatch(actions.form.addUser(data));
-    dispatch(actions.form.clearForm());
-    dispatch(actions.form.setRegisterModalOpenAction(false));
-  };
-
+const FormModal = ({ dispatch, open, formData, editingUserId }) => {
   return (
     open && (
       <>
@@ -52,20 +18,10 @@ const FormModal = ({ dispatch, open, formData }) => {
           aria-describedby="modal__desc"
         >
           <h3 className={styles.title} id="modal__title">
-            Fill the form
+            {editingUserId !== null ? 'Edit users data' : 'Fill the form'}
           </h3>
-
           <div className={styles.content}>
             <Form />
-          </div>
-
-          <div className={styles.actions}>
-            <Button color="primary" onClick={save}>
-              Save
-            </Button>
-            <Button color="outline" onClick={cancel}>
-              Cancel
-            </Button>
           </div>
         </div>
         <Backdrop />
@@ -76,12 +32,15 @@ const FormModal = ({ dispatch, open, formData }) => {
 const mapStateToProps = state => ({
   open: state.formState.registerModalIsOpen,
   formData: state.formState.formData,
+  editingUserId: state.formState.editingUserId,
 });
 
 FormModal.propTypes = {
   dispatch: PropTypes.func.isRequired,
   open: PropTypes.bool.isRequired,
+  editingUserId: PropTypes.number,
   formData: PropTypes.shape({
+    id: PropTypes.number,
     name: PropTypes.string.isRequired,
     surname: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,

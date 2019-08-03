@@ -31,13 +31,29 @@ const Home = ({ dispatch, loading, usersList }) => {
 
   const renderTable = () =>
     usersList.map(({ id, name, surname, email, address }) => (
-      <TableRow key={id}>
+      <TableRow
+        key={id}
+        onClick={() => rowClick(id, name, surname, email, address)}
+      >
         <TableCell>{name}</TableCell>
         <TableCell>{surname}</TableCell>
         <TableCell>{email}</TableCell>
         <TableCell>{address}</TableCell>
       </TableRow>
     ));
+  const rowClick = (id, name, surname, email, address) => {
+    const data = {
+      id,
+      name,
+      surname,
+      email,
+      address,
+    };
+
+    dispatch(actions.form.editingUserId(id));
+    dispatch(actions.form.formState(data));
+    dispatch(actions.form.setRegisterModalOpenAction(true));
+  };
 
   return (
     <WithSpinner loading={loading}>

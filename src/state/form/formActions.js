@@ -40,6 +40,27 @@ const clearForm = () => {
   };
 };
 
+const editingUserId = payload => {
+  return {
+    type: constants.form.EDITING_USER_ID,
+    payload,
+  };
+};
+
+const setUserData = payload => {
+  return {
+    type: constants.form.SET_USER_DATA,
+    payload,
+  };
+};
+
+const pushEditedUsersData = payload => {
+  return {
+    type: constants.form.PUSH_EDITED_USERS_DATA,
+    payload,
+  };
+};
+
 export const userActions = {
   updateDashboardAction,
   setUserOnSyncFlagAction,
@@ -47,4 +68,7 @@ export const userActions = {
   formState,
   addUser,
   clearForm,
+  editingUserId,
+  setUserData,
+  pushEditedUsersData,
 };

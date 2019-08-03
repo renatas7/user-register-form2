@@ -5,3 +5,10 @@
   font-size: 1rem;
   text-align: left;
 }
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  width: 29rem;
+  margin: 4rem auto 2rem auto;
+}

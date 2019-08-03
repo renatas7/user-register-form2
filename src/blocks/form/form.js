@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { actions } from './../../state';
 import { Input } from './../../components';
-// import styles from './form.module.scss';
+import styles from './form.module.scss';
 import PropTypes from 'prop-types';
+import { Button } from './../../components';
 
-const Form = ({ data, dispatch }) => {
+const Form = ({ data, dispatch, editingUserId }) => {
   const [values, setValues] = useState({
     name: data.name !== null ? data.name : '',
     surname: data.surname !== null ? data.surname : '',
@@ -15,14 +16,29 @@ const Form = ({ data, dispatch }) => {
 
   const handleInputChange = ({ target: { name, value } }) => {
     setValues({ ...values, [name]: value });
+  };
+
+  useEffect(() => {
     const formData = {
       name: values.name,
       surname: values.surname,
       email: values.email,
       address: values.address,
     };
-
     dispatch(actions.form.formState(formData));
+  }, [dispatch, values]);
+
+  const cancel = () => {
+    dispatch(actions.form.setRegisterModalOpenAction(false));
+    dispatch(actions.form.clearForm());
+  };
+
+  const save = () => {
+    const payload = {
+      data,
+      editingUserId,
+    };
+    dispatch(actions.form.setUserData(payload));
   };
 
   return (
@@ -56,12 +72,21 @@ const Form = ({ data, dispatch }) => {
         value={values.address}
         placeholder="Address"
       />
+      <div className={styles.actions}>
+        <Button color="primary" onClick={save}>
+          Save
+        </Button>
+        <Button color="outline" onClick={cancel}>
+          Cancel
+        </Button>
+      </div>
     </div>
   );
 };
 
 const mapStateToProps = state => ({
   data: state.formState.formData,
+  editingUserId: state.formState.editingUserId,
 });
 
 Form.propTypes = {
