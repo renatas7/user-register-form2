@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { useEffect } from 'react';
 import { actions } from './../../state/actions';
 import { connect } from 'react-redux';
 import {
@@ -13,15 +13,9 @@ import styles from './home.module.scss';
 import PropTypes from 'prop-types';
 
 const Home = ({ dispatch, loading, usersList }) => {
-  const fetchSelectedLocation = useCallback(
-    id => {
-      dispatch(actions.form.updateDashboardAction());
-    },
-    [dispatch]
-  );
   useEffect(() => {
-    fetchSelectedLocation();
-  }, [fetchSelectedLocation]);
+    dispatch(actions.form.updateDashboardAction());
+  }, [dispatch, loading]);
 
   const openForm = () => {
     dispatch(actions.form.setRegisterModalOpenAction(true));
@@ -54,20 +48,19 @@ const Home = ({ dispatch, loading, usersList }) => {
     dispatch(actions.form.formState(data));
     dispatch(actions.form.setRegisterModalOpenAction(true));
   };
-
   return (
-    <WithSpinner loading={loading}>
-      <Paper>
-        <div className={styles.container}>
-          <Button color="primary" onClick={openForm}>
-            Add New User
-          </Button>
-        </div>
+    <Paper>
+      <div className={styles.container}>
+        <Button color="primary" onClick={openForm}>
+          Add New User
+        </Button>
+      </div>
+      <WithSpinner loading={loading}>
         <Table header={tableHeader} filter={true} isEmpty={!usersList.length}>
           {renderTable()}
         </Table>
-      </Paper>
-    </WithSpinner>
+      </WithSpinner>
+    </Paper>
   );
 };
 

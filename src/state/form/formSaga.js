@@ -8,7 +8,9 @@ import {
 function* updateFormSaga() {
   try {
     yield put(actions.form.setUserOnSyncFlagAction(true));
-    console.log('saga was called');
+    const userListData = localStorage.getItem('usersList');
+    const parsedData = JSON.parse(userListData);
+    yield put(actions.form.pushEditedUsersData(parsedData));
   } catch (error) {
     console.log(error);
   } finally {
@@ -26,6 +28,8 @@ function* setUserDataSaga(action) {
         ...action.payload.data,
       };
       yield put(actions.form.addUser(datatoPush));
+      const usersList = yield select(selectUsersList);
+      localStorage.setItem('usersList', JSON.stringify(usersList));
     } else {
       const usersList = yield select(selectUsersList);
       const formData = yield select(selectFormData);
@@ -35,7 +39,10 @@ function* setUserDataSaga(action) {
           : data
       );
       yield put(actions.form.pushEditedUsersData(newData));
+      const newUsersList = yield select(selectUsersList);
+      localStorage.setItem('usersList', JSON.stringify(newUsersList));
     }
+    yield put(actions.form.updateDashboardAction());
     yield put(actions.form.clearForm());
     yield put(actions.form.setRegisterModalOpenAction(false));
   } catch (error) {
