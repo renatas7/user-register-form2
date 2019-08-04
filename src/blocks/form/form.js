@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import { Button } from './../../components';
 // import LocationInput from './../locationInput/locationInput';
 
-const Form = ({ data, dispatch, editingUserId }) => {
+const Form = ({ data, dispatch, editingUserId, formNotValid }) => {
   const [values, setValues] = useState({
     name: data.name !== null ? data.name : '',
     surname: data.surname !== null ? data.surname : '',
@@ -40,6 +40,7 @@ const Form = ({ data, dispatch, editingUserId }) => {
   const cancel = () => {
     dispatch(actions.form.setRegisterModalOpenAction(false));
     dispatch(actions.form.clearForm());
+    dispatch(actions.form.formNotValid(false));
   };
 
   const save = () => {
@@ -140,6 +141,7 @@ const Form = ({ data, dispatch, editingUserId }) => {
           Cancel
         </Button>
       </div>
+      {formNotValid && <p>All form fields must be filled</p>}
     </div>
   );
 };
@@ -147,6 +149,7 @@ const Form = ({ data, dispatch, editingUserId }) => {
 const mapStateToProps = state => ({
   data: state.formState.formData,
   editingUserId: state.formState.editingUserId,
+  formNotValid: state.formState.formNotValid,
 });
 
 Form.propTypes = {
@@ -161,6 +164,7 @@ Form.propTypes = {
     country: PropTypes.string.isRequired,
     zipCode: PropTypes.string.isRequired,
   }),
+  formNotValid: PropTypes.bool.isRequired,
 };
 
 export default connect(mapStateToProps)(Form);

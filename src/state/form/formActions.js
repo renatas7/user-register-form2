@@ -61,6 +61,13 @@ const pushEditedUsersData = payload => {
   };
 };
 
+const formNotValid = payload => {
+  return {
+    type: constants.form.FORM_NOT_VALID,
+    payload,
+  };
+};
+
 export const userActions = {
   updateDashboardAction,
   setUserOnSyncFlagAction,
@@ -71,4 +78,5 @@ export const userActions = {
   editingUserId,
   setUserData,
   pushEditedUsersData,
+  formNotValid,
 };

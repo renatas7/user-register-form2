@@ -16,6 +16,7 @@ const INITIAL_STATE = {
   },
   editingUserId: null,
   usersList: [],
+  formNotValid: false,
 };
 
 export const userReducer = (state = INITIAL_STATE, action) => {
@@ -66,6 +67,12 @@ export const userReducer = (state = INITIAL_STATE, action) => {
         ...state,
         editingUserId: action.payload,
       };
+    case constants.form.FORM_NOT_VALID:
+      return {
+        ...state,
+        formNotValid: action.payload,
+      };
+
     default:
       return state;
   }

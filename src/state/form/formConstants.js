@@ -8,4 +8,5 @@ export const formConstants = {
   EDITING_USER_ID: 'form/EDITING_USER_ID',
   SET_USER_DATA: 'form/SET_USER_DATA',
   PUSH_EDITED_USERS_DATA: 'form/PUSH_EDITED_USERS_DATA',
+  FORM_NOT_VALID: './form/FORM_NOT_VALID',
 };
