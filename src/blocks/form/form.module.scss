@@ -1,6 +1,6 @@
 .validationMessage {
   color: #9f3a38;
-  margin-top: -0.7rem;
+  margin-top: 0rem;
   margin-left: 1rem;
   font-size: 1rem;
   text-align: left;
@@ -11,4 +11,21 @@
   justify-content: space-between;
   width: 29rem;
   margin: 4rem auto 2rem auto;
+}
+
+.addressInline {
+  display: flex;
+  input:first-child {
+    margin-right: 1rem;
+  }
+  input:last-child {
+    width: 40%;
+  }
+}
+
+.inline {
+  display: flex;
+  input:first-child {
+    margin-right: 1rem;
+  }
 }

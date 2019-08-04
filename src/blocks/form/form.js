@@ -5,14 +5,18 @@ import { Input } from './../../components';
 import styles from './form.module.scss';
 import PropTypes from 'prop-types';
 import { Button } from './../../components';
-import LocationInput from './../locationInput/locationInput';
+// import LocationInput from './../locationInput/locationInput';
 
 const Form = ({ data, dispatch, editingUserId }) => {
   const [values, setValues] = useState({
     name: data.name !== null ? data.name : '',
     surname: data.surname !== null ? data.surname : '',
     email: data.email !== null ? data.email : '',
-    address: data.address !== null ? data.address : '',
+    street: data.street !== null ? data.street : '',
+    house: data.house !== null ? data.house : '',
+    city: data.city !== null ? data.city : '',
+    country: data.country !== null ? data.country : '',
+    zipCode: data.zipCode !== null ? data.zipCode : '',
   });
 
   const handleInputChange = ({ target: { name, value } }) => {
@@ -24,7 +28,11 @@ const Form = ({ data, dispatch, editingUserId }) => {
       name: values.name,
       surname: values.surname,
       email: values.email,
-      address: values.address,
+      street: values.street,
+      house: values.house,
+      city: values.city,
+      country: values.country,
+      zipCode: values.zipCode,
     };
     dispatch(actions.form.formState(formData));
   }, [dispatch, values]);
@@ -44,21 +52,25 @@ const Form = ({ data, dispatch, editingUserId }) => {
 
   return (
     <div>
-      <Input
-        name="name"
-        type="string"
-        onChange={handleInputChange}
-        value={values.name}
-        placeholder="Name"
-      />
-      {/* <p className={styles.validationMessage}>Name is required </p> */}
-      <Input
-        name="surname"
-        type="string"
-        onChange={handleInputChange}
-        value={values.surname}
-        placeholder="Surname"
-      />
+      <div className={styles.inline}>
+        <Input
+          name="name"
+          type="string"
+          onChange={handleInputChange}
+          value={values.name}
+          placeholder="Name"
+        />
+        {/* <p className={styles.validationMessage}>Name is required </p> */}
+        <Input
+          name="surname"
+          type="string"
+          onChange={handleInputChange}
+          value={values.surname}
+          placeholder="Surname"
+        />
+        {/* <p className={styles.validationMessage}>Name is required </p> */}
+      </div>
+
       <Input
         name="email"
         type="string"
@@ -66,13 +78,52 @@ const Form = ({ data, dispatch, editingUserId }) => {
         value={values.email}
         placeholder="Email"
       />
-      <Input
+      {/* <Input
         name="address"
         type="string"
         onChange={handleInputChange}
         value={values.address}
         placeholder="Address"
+      /> */}
+      <div className={styles.addressInline}>
+        <Input
+          name="street"
+          type="string"
+          onChange={handleInputChange}
+          value={values.street}
+          placeholder="Street"
+        />
+        <Input
+          name="house"
+          type="string"
+          onChange={handleInputChange}
+          value={values.house}
+          placeholder="House"
+        />
+      </div>
+      <Input
+        name="city"
+        type="string"
+        onChange={handleInputChange}
+        value={values.city}
+        placeholder="City"
       />
+      <div className={styles.inline}>
+        <Input
+          name="country"
+          type="string"
+          onChange={handleInputChange}
+          value={values.country}
+          placeholder="Country"
+        />
+        <Input
+          name="zipCode"
+          type="string"
+          onChange={handleInputChange}
+          value={values.zipCode}
+          placeholder="Zip code"
+        />
+      </div>
 
       {/* <LocationInput 
           name="address"
@@ -104,7 +155,11 @@ Form.propTypes = {
     name: PropTypes.string.isRequired,
     surname: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
-    address: PropTypes.string.isRequired,
+    street: PropTypes.string.isRequired,
+    house: PropTypes.string.isRequired,
+    city: PropTypes.string.isRequired,
+    country: PropTypes.string.isRequired,
+    zipCode: PropTypes.string.isRequired,
   }),
 };
 

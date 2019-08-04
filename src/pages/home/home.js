@@ -24,24 +24,52 @@ const Home = ({ dispatch, loading, usersList }) => {
   const tableHeader = ['Name', 'Surname', 'Email', 'Address'];
 
   const renderTable = () =>
-    usersList.map(({ id, name, surname, email, address }) => (
-      <TableRow
-        key={id}
-        onClick={() => rowClick(id, name, surname, email, address)}
-      >
-        <TableCell>{name}</TableCell>
-        <TableCell>{surname}</TableCell>
-        <TableCell>{email}</TableCell>
-        <TableCell>{address}</TableCell>
-      </TableRow>
-    ));
-  const rowClick = (id, name, surname, email, address) => {
+    usersList.map(
+      ({ id, name, surname, email, street, house, city, country, zipCode }) => (
+        <TableRow
+          key={id}
+          onClick={() =>
+            rowClick(
+              id,
+              name,
+              surname,
+              email,
+              street,
+              house,
+              city,
+              country,
+              zipCode
+            )
+          }
+        >
+          <TableCell>{name}</TableCell>
+          <TableCell>{surname}</TableCell>
+          <TableCell>{email}</TableCell>
+          <TableCell>{`${street}, ${house}, ${city}, ${country}, ${zipCode}`}</TableCell>
+        </TableRow>
+      )
+    );
+  const rowClick = (
+    id,
+    name,
+    surname,
+    email,
+    street,
+    house,
+    city,
+    country,
+    zipCode
+  ) => {
     const data = {
       id,
       name,
       surname,
       email,
-      address,
+      street,
+      house,
+      city,
+      country,
+      zipCode,
     };
 
     dispatch(actions.form.editingUserId(id));
@@ -71,6 +99,18 @@ const mapStateToProps = state => ({
 
 Home.propTypes = {
   loading: PropTypes.bool.isRequired,
+  usersList: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      surname: PropTypes.string.isRequired,
+      email: PropTypes.string.isRequired,
+      street: PropTypes.string.isRequired,
+      house: PropTypes.string.isRequired,
+      city: PropTypes.string.isRequired,
+      country: PropTypes.string.isRequired,
+      zipCode: PropTypes.string.isRequired,
+    }).isRequired
+  ).isRequired,
 };
 
 export default connect(mapStateToProps)(Home);

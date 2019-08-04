@@ -5,7 +5,7 @@ import { Backdrop } from './../../components';
 import Form from './../../blocks/form/form';
 import PropTypes from 'prop-types';
 
-const FormModal = ({ dispatch, open, formData, editingUserId }) => {
+const FormModal = ({ dispatch, open, editingUserId }) => {
   return (
     open && (
       <>
@@ -31,7 +31,6 @@ const FormModal = ({ dispatch, open, formData, editingUserId }) => {
 };
 const mapStateToProps = state => ({
   open: state.formState.registerModalIsOpen,
-  formData: state.formState.formData,
   editingUserId: state.formState.editingUserId,
 });
 
@@ -39,13 +38,6 @@ FormModal.propTypes = {
   dispatch: PropTypes.func.isRequired,
   open: PropTypes.bool.isRequired,
   editingUserId: PropTypes.number,
-  formData: PropTypes.shape({
-    id: PropTypes.number,
-    name: PropTypes.string.isRequired,
-    surname: PropTypes.string.isRequired,
-    email: PropTypes.string.isRequired,
-    address: PropTypes.string.isRequired,
-  }),
 };
 
 export default connect(mapStateToProps)(FormModal);

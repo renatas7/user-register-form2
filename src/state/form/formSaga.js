@@ -9,8 +9,10 @@ function* updateFormSaga() {
   try {
     yield put(actions.form.setUserOnSyncFlagAction(true));
     const userListData = localStorage.getItem('usersList');
-    const parsedData = JSON.parse(userListData);
-    yield put(actions.form.pushEditedUsersData(parsedData));
+    if (userListData !== undefined && userListData !== null) {
+      const parsedData = JSON.parse(userListData);
+      yield put(actions.form.pushEditedUsersData(parsedData));
+    }
   } catch (error) {
     console.log(error);
   } finally {
