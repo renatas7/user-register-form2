@@ -5,6 +5,7 @@ import { Input } from './../../components';
 import styles from './form.module.scss';
 import PropTypes from 'prop-types';
 import { Button } from './../../components';
+import LocationInput from './../locationInput/locationInput';
 
 const Form = ({ data, dispatch, editingUserId }) => {
   const [values, setValues] = useState({
@@ -72,6 +73,14 @@ const Form = ({ data, dispatch, editingUserId }) => {
         value={values.address}
         placeholder="Address"
       />
+
+      {/* <LocationInput 
+          name="address"
+          type="string"
+          onChange={handleInputChange}
+          value={values.address}
+          placeholder="Address"
+      /> */}
       <div className={styles.actions}>
         <Button color="primary" onClick={save}>
           Save

@@ -56,7 +56,7 @@ const Home = ({ dispatch, loading, usersList }) => {
         </Button>
       </div>
       <WithSpinner loading={loading}>
-        <Table header={tableHeader} filter={true} isEmpty={!usersList.length}>
+        <Table header={tableHeader} isEmpty={!usersList.length}>
           {renderTable()}
         </Table>
       </WithSpinner>
