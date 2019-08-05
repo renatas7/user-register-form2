@@ -7,7 +7,13 @@ import PropTypes from 'prop-types';
 import { Button } from './../../components';
 import LocationInput from './../locationInput/locationInput';
 
-const Form = ({ data, dispatch, editingUserId, formNotValid }) => {
+const Form = ({
+  data,
+  dispatch,
+  editingUserId,
+  formNotValid,
+  addressUpdate,
+}) => {
   // you need to push data from sotre with useing useeffect
 
   const [values, setValues] = useState({
@@ -26,6 +32,10 @@ const Form = ({ data, dispatch, editingUserId, formNotValid }) => {
   };
 
   useEffect(() => {
+    if (Object.keys(addressUpdate).length > 0) {
+      setValues(addressUpdate);
+      dispatch(actions.form.clearAddressData());
+    }
     const formData = {
       name: values.name,
       surname: values.surname,
@@ -37,7 +47,7 @@ const Form = ({ data, dispatch, editingUserId, formNotValid }) => {
       zipCode: values.zipCode,
     };
     dispatch(actions.form.formState(formData));
-  }, [dispatch, values]);
+  }, [dispatch, values, addressUpdate]);
 
   const cancel = () => {
     dispatch(actions.form.setRegisterModalOpenAction(false));
@@ -145,6 +155,7 @@ const mapStateToProps = state => ({
   data: state.formState.formData,
   editingUserId: state.formState.editingUserId,
   formNotValid: state.formState.formNotValid,
+  addressUpdate: state.formState.addressUpdate,
 });
 
 Form.propTypes = {
@@ -160,6 +171,16 @@ Form.propTypes = {
     zipCode: PropTypes.string.isRequired,
   }),
   formNotValid: PropTypes.bool.isRequired,
+  addressUpdate: PropTypes.shape({
+    name: PropTypes.string,
+    surname: PropTypes.string,
+    email: PropTypes.string,
+    street: PropTypes.string,
+    house: PropTypes.string,
+    city: PropTypes.string,
+    country: PropTypes.string,
+    zipCode: PropTypes.string,
+  }),
 };
 
 export default connect(mapStateToProps)(Form);

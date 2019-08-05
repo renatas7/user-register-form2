@@ -1,10 +1,11 @@
 import { actions } from '../actions';
-import { put, select } from 'redux-saga/effects';
+import { put, select, call } from 'redux-saga/effects';
 import {
   selectUsersList,
   selectFormData,
 } from './../../utils/selectors/selectors';
 import { geocodeByAddress } from 'react-places-autocomplete';
+import { formatAddressData } from './../../utils/helpers/helpers';
 
 function* updateFormSaga() {
   try {
@@ -70,27 +71,20 @@ function* formatAddressDataSaga(action) {
     yield put(actions.form.setUserOnSyncFlagAction(true));
     const address = action.payload.address;
     const formData = action.payload.data;
-    geocodeByAddress(address).then(results => {
-      const rawAddress = { ...results[0].address_components };
-      formData.street = rawAddress[1].short_name;
-      formData.house = rawAddress[0].short_name;
-      formData.city = rawAddress[2].short_name;
-      formData.country = rawAddress[5].long_name;
-      formData.zipCode = rawAddress[6].short_name;
-      return formData;
-    });
-    console.log(formData);
-    const aa = {
-      name: 'fefefefe',
-      surname: 'fef',
-      email: 'efefe',
-      street: 'Savanorių pr.',
-      house: '180',
-      city: 'Vilnius',
-      country: 'Lietuva',
-      zipCode: '03154',
-    };
-    yield put(actions.form.formState(aa));
+    const results = yield call(geocodeByAddress, address);
+    const rawAddress = { ...results[0].address_components };
+
+    // const addressData = formData
+    // addressData.street = rawAddress[1].short_name;
+    // addressData.house = rawAddress[0].short_name;
+    // addressData.city = rawAddress[2].short_name;
+    // addressData.country = rawAddress[5].long_name;
+    // addressData.zipCode = rawAddress[6].short_name;
+
+    const formatted = formatAddressData(formData, rawAddress);
+    console.log(formatted);
+
+    yield put(actions.form.updateAddressData(formatted));
   } catch (error) {
     console.log(error);
   } finally {

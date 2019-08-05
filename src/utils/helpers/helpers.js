@@ -1,24 +1,8 @@
-const isObject = val => {
-  return typeof val === 'object' && val !== null;
-};
-
-export const classnames = (...args) => {
-  const classes = [];
-  args.forEach(arg => {
-    if (typeof arg === 'string') {
-      classes.push(arg);
-    } else if (isObject(arg)) {
-      Object.keys(arg).forEach(key => {
-        if (arg[key]) {
-          classes.push(key);
-        }
-      });
-    } else {
-      throw new Error(
-        '`classnames` only accepts string or object as arguments'
-      );
-    }
-  });
-
-  return classes.join(' ');
+export const formatAddressData = (formData, rawAddress) => {
+  formData.street = rawAddress[1].short_name;
+  formData.house = rawAddress[0].short_name;
+  formData.city = rawAddress[2].short_name;
+  formData.country = rawAddress[5].long_name;
+  formData.zipCode = rawAddress[6].short_name;
+  return formData;
 };

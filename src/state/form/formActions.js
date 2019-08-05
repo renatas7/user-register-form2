@@ -75,6 +75,19 @@ const pushAddressData = payload => {
   };
 };
 
+const updateAddressData = payload => {
+  return {
+    type: constants.form.UPDATE_ADDRESS_DATA,
+    payload,
+  };
+};
+
+const clearAddressData = () => {
+  return {
+    type: constants.form.CLEAR_ADDRESS_DATA,
+  };
+};
+
 export const userActions = {
   updateDashboardAction,
   setUserOnSyncFlagAction,
@@ -87,4 +100,6 @@ export const userActions = {
   pushEditedUsersData,
   formNotValid,
   pushAddressData,
+  updateAddressData,
+  clearAddressData,
 };
