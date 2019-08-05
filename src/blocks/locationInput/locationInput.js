@@ -1,30 +1,25 @@
 import React, { useState } from 'react';
-import PlacesAutocomplete, {
-  geocodeByAddress,
-} from 'react-places-autocomplete';
+import PlacesAutocomplete from 'react-places-autocomplete';
 import './locationInput.scss';
 import { connect } from 'react-redux';
-// import { actions } from './../../state';
+import { actions } from './../../state';
 
-const LocationInput = ({ data }) => {
+const LocationInput = ({ data, dispatch }) => {
   const [address, setAddress] = useState('');
-  console.log(data.address);
-  // const [address, setAddress] = useState({
-  //   address: data.address !== null ? data.address : '',
-  // });
 
   const handleChange = address => {
     setAddress(address);
   };
 
   const handleSelect = address => {
-    console.log(address);
+    const payload = {
+      address,
+      data,
+    };
+    dispatch(actions.form.pushAddressData(payload));
     setAddress(address);
-    geocodeByAddress(address)
-      .then(results => console.log(results))
-      .then(latLng => console.log('Success', latLng))
-      .catch(error => console.error('Error', error));
   };
+
   return (
     <PlacesAutocomplete
       value={address}

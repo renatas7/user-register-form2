@@ -5,9 +5,11 @@ import { Input } from './../../components';
 import styles from './form.module.scss';
 import PropTypes from 'prop-types';
 import { Button } from './../../components';
-// import LocationInput from './../locationInput/locationInput';
+import LocationInput from './../locationInput/locationInput';
 
 const Form = ({ data, dispatch, editingUserId, formNotValid }) => {
+  // you need to push data from sotre with useing useeffect
+
   const [values, setValues] = useState({
     name: data.name !== null ? data.name : '',
     surname: data.surname !== null ? data.surname : '',
@@ -79,13 +81,13 @@ const Form = ({ data, dispatch, editingUserId, formNotValid }) => {
         value={values.email}
         placeholder="Email"
       />
-      {/* <Input
+      <LocationInput
         name="address"
         type="string"
         onChange={handleInputChange}
         value={values.address}
         placeholder="Address"
-      /> */}
+      />
       <div className={styles.addressInline}>
         <Input
           name="street"
@@ -126,13 +128,6 @@ const Form = ({ data, dispatch, editingUserId, formNotValid }) => {
         />
       </div>
 
-      {/* <LocationInput 
-          name="address"
-          type="string"
-          onChange={handleInputChange}
-          value={values.address}
-          placeholder="Address"
-      /> */}
       <div className={styles.actions}>
         <Button color="primary" onClick={save}>
           Save

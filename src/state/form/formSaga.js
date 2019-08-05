@@ -4,6 +4,7 @@ import {
   selectUsersList,
   selectFormData,
 } from './../../utils/selectors/selectors';
+import { geocodeByAddress } from 'react-places-autocomplete';
 
 function* updateFormSaga() {
   try {
@@ -64,4 +65,37 @@ function* setUserDataSaga(action) {
   }
 }
 
-export { updateFormSaga, setUserDataSaga };
+function* formatAddressDataSaga(action) {
+  try {
+    yield put(actions.form.setUserOnSyncFlagAction(true));
+    const address = action.payload.address;
+    const formData = action.payload.data;
+    geocodeByAddress(address).then(results => {
+      const rawAddress = { ...results[0].address_components };
+      formData.street = rawAddress[1].short_name;
+      formData.house = rawAddress[0].short_name;
+      formData.city = rawAddress[2].short_name;
+      formData.country = rawAddress[5].long_name;
+      formData.zipCode = rawAddress[6].short_name;
+      return formData;
+    });
+    console.log(formData);
+    const aa = {
+      name: 'fefefefe',
+      surname: 'fef',
+      email: 'efefe',
+      street: 'Savanorių pr.',
+      house: '180',
+      city: 'Vilnius',
+      country: 'Lietuva',
+      zipCode: '03154',
+    };
+    yield put(actions.form.formState(aa));
+  } catch (error) {
+    console.log(error);
+  } finally {
+    yield put(actions.form.setUserOnSyncFlagAction(false));
+  }
+}
+
+export { updateFormSaga, setUserDataSaga, formatAddressDataSaga };

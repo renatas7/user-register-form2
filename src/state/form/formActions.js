@@ -68,6 +68,13 @@ const formNotValid = payload => {
   };
 };
 
+const pushAddressData = payload => {
+  return {
+    type: constants.form.PUSH_ADDRESS_DATA,
+    payload,
+  };
+};
+
 export const userActions = {
   updateDashboardAction,
   setUserOnSyncFlagAction,
@@ -79,4 +86,5 @@ export const userActions = {
   setUserData,
   pushEditedUsersData,
   formNotValid,
+  pushAddressData,
 };
