@@ -5,7 +5,7 @@ import { actions } from './../../state';
 import styles from './locationInput.module.scss';
 import { Spinner } from '../../components';
 
-const LocationInput = ({ data, dispatch }) => {
+const LocationInput = ({ data, dispatch, formNotValid }) => {
   const [address, setAddress] = useState('');
 
   const handleChange = address => {
@@ -21,6 +21,13 @@ const LocationInput = ({ data, dispatch }) => {
     setAddress(address);
   };
 
+  const errorStyle = {
+    border: '1px solid #d22d2d',
+  };
+  const okStyle = {
+    border: 'none',
+  };
+
   return (
     <PlacesAutocomplete
       value={address}
@@ -33,6 +40,7 @@ const LocationInput = ({ data, dispatch }) => {
             {...getInputProps({
               placeholder: 'Address',
               className: styles.input,
+              style: formNotValid && address === '' ? errorStyle : okStyle,
             })}
           />
           <div className={styles.autocompleteDropdownDontainer}>
@@ -66,6 +74,7 @@ const LocationInput = ({ data, dispatch }) => {
 const mapStateToProps = state => ({
   data: state.formState.formData,
   editingUserId: state.formState.editingUserId,
+  formNotValid: state.formState.formNotValid,
 });
 
 export default connect(mapStateToProps)(LocationInput);

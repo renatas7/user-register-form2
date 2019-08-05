@@ -45,6 +45,11 @@ const Form = ({
       country: values.country,
       zipCode: values.zipCode,
     };
+
+    if (Object.values(formData).every(x => x !== '')) {
+      dispatch(actions.form.formNotValid(false));
+    }
+
     dispatch(actions.form.formState(formData));
   }, [dispatch, values, addressUpdate]);
 
@@ -62,6 +67,13 @@ const Form = ({
     dispatch(actions.form.setUserData(payload));
   };
 
+  const errorStyle = {
+    border: '1px solid #d22d2d',
+  };
+  const okStyle = {
+    border: 'none',
+  };
+
   return (
     <div>
       <div className={styles.inline}>
@@ -71,16 +83,16 @@ const Form = ({
           onChange={handleInputChange}
           value={values.name}
           placeholder="Name"
+          style={formNotValid && values.name === '' ? errorStyle : okStyle}
         />
-        {/* <p className={styles.validationMessage}>Name is required </p> */}
         <Input
           name="surname"
           type="string"
           onChange={handleInputChange}
           value={values.surname}
           placeholder="Surname"
+          style={formNotValid && values.surname === '' ? errorStyle : okStyle}
         />
-        {/* <p className={styles.validationMessage}>Name is required </p> */}
       </div>
 
       <Input
@@ -89,6 +101,7 @@ const Form = ({
         onChange={handleInputChange}
         value={values.email}
         placeholder="Email"
+        style={formNotValid && values.email === '' ? errorStyle : okStyle}
       />
       {!addressSelected && editingUserId === null ? (
         <LocationInput
@@ -97,6 +110,7 @@ const Form = ({
           onChange={handleInputChange}
           value={values.address}
           placeholder="Address"
+          style={formNotValid && values.address === '' ? errorStyle : okStyle}
         />
       ) : (
         <>
@@ -107,6 +121,9 @@ const Form = ({
               onChange={handleInputChange}
               value={values.street}
               placeholder="Street"
+              style={
+                formNotValid && values.street === '' ? errorStyle : okStyle
+              }
             />
             <Input
               name="house"
@@ -114,6 +131,7 @@ const Form = ({
               onChange={handleInputChange}
               value={values.house}
               placeholder="House"
+              style={formNotValid && values.house === '' ? errorStyle : okStyle}
             />
           </div>
           <Input
@@ -122,6 +140,7 @@ const Form = ({
             onChange={handleInputChange}
             value={values.city}
             placeholder="City"
+            style={formNotValid && values.city === '' ? errorStyle : okStyle}
           />
           <div className={styles.inline}>
             <Input
@@ -130,6 +149,9 @@ const Form = ({
               onChange={handleInputChange}
               value={values.country}
               placeholder="Country"
+              style={
+                formNotValid && values.country === '' ? errorStyle : okStyle
+              }
             />
             <Input
               name="zipCode"
@@ -137,6 +159,9 @@ const Form = ({
               onChange={handleInputChange}
               value={values.zipCode}
               placeholder="Zip code"
+              style={
+                formNotValid && values.zipCode === '' ? errorStyle : okStyle
+              }
             />
           </div>
         </>
@@ -150,7 +175,11 @@ const Form = ({
           Cancel
         </Button>
       </div>
-      {formNotValid && <p>All form fields must be filled</p>}
+      {formNotValid && (
+        <p className={styles.validationMessage}>
+          All form fields must be filled
+        </p>
+      )}
     </div>
   );
 };
