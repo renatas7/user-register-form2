@@ -88,6 +88,13 @@ const clearAddressData = () => {
   };
 };
 
+const addressSelected = payload => {
+  return {
+    type: constants.form.ADDRESS_SELECTED,
+    payload,
+  };
+};
+
 export const userActions = {
   updateDashboardAction,
   setUserOnSyncFlagAction,
@@ -102,4 +109,5 @@ export const userActions = {
   pushAddressData,
   updateAddressData,
   clearAddressData,
+  addressSelected,
 };

@@ -13,9 +13,8 @@ const Form = ({
   editingUserId,
   formNotValid,
   addressUpdate,
+  addressSelected,
 }) => {
-  // you need to push data from sotre with useing useeffect
-
   const [values, setValues] = useState({
     name: data.name !== null ? data.name : '',
     surname: data.surname !== null ? data.surname : '',
@@ -91,52 +90,57 @@ const Form = ({
         value={values.email}
         placeholder="Email"
       />
-      <LocationInput
-        name="address"
-        type="string"
-        onChange={handleInputChange}
-        value={values.address}
-        placeholder="Address"
-      />
-      <div className={styles.addressInline}>
-        <Input
-          name="street"
+      {!addressSelected && editingUserId === null ? (
+        <LocationInput
+          name="address"
           type="string"
           onChange={handleInputChange}
-          value={values.street}
-          placeholder="Street"
+          value={values.address}
+          placeholder="Address"
         />
-        <Input
-          name="house"
-          type="string"
-          onChange={handleInputChange}
-          value={values.house}
-          placeholder="House"
-        />
-      </div>
-      <Input
-        name="city"
-        type="string"
-        onChange={handleInputChange}
-        value={values.city}
-        placeholder="City"
-      />
-      <div className={styles.inline}>
-        <Input
-          name="country"
-          type="string"
-          onChange={handleInputChange}
-          value={values.country}
-          placeholder="Country"
-        />
-        <Input
-          name="zipCode"
-          type="string"
-          onChange={handleInputChange}
-          value={values.zipCode}
-          placeholder="Zip code"
-        />
-      </div>
+      ) : (
+        <>
+          <div className={styles.addressInline}>
+            <Input
+              name="street"
+              type="string"
+              onChange={handleInputChange}
+              value={values.street}
+              placeholder="Street"
+            />
+            <Input
+              name="house"
+              type="string"
+              onChange={handleInputChange}
+              value={values.house}
+              placeholder="House"
+            />
+          </div>
+          <Input
+            name="city"
+            type="string"
+            onChange={handleInputChange}
+            value={values.city}
+            placeholder="City"
+          />
+          <div className={styles.inline}>
+            <Input
+              name="country"
+              type="string"
+              onChange={handleInputChange}
+              value={values.country}
+              placeholder="Country"
+            />
+            <Input
+              name="zipCode"
+              type="string"
+              onChange={handleInputChange}
+              value={values.zipCode}
+              placeholder="Zip code"
+            />
+          </div>
+        </>
+      )}
 
       <div className={styles.actions}>
         <Button color="primary" onClick={save}>
@@ -156,6 +160,7 @@ const mapStateToProps = state => ({
   editingUserId: state.formState.editingUserId,
   formNotValid: state.formState.formNotValid,
   addressUpdate: state.formState.addressUpdate,
+  addressSelected: state.formState.addressSelected,
 });
 
 Form.propTypes = {
@@ -181,6 +186,7 @@ Form.propTypes = {
     country: PropTypes.string,
     zipCode: PropTypes.string,
   }),
+  addressSelected: PropTypes.bool.isRequired,
 };
 
 export default connect(mapStateToProps)(Form);

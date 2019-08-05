@@ -8,7 +8,7 @@ import {
   Table,
   TableRow,
   TableCell,
-} from '../../components';
+} from './../../components';
 import styles from './home.module.scss';
 import PropTypes from 'prop-types';
 

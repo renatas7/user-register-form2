@@ -18,6 +18,7 @@ const INITIAL_STATE = {
   usersList: [],
   formNotValid: false,
   addressUpdate: {},
+  addressSelected: false,
 };
 
 export const userReducer = (state = INITIAL_STATE, action) => {
@@ -58,6 +59,7 @@ export const userReducer = (state = INITIAL_STATE, action) => {
         },
         editingUserId: null,
         addressUpdate: {},
+        addressSelected: false,
       };
     case constants.form.ADD_USER:
       return {
@@ -84,7 +86,11 @@ export const userReducer = (state = INITIAL_STATE, action) => {
         ...state,
         addressUpdate: {},
       };
-
+    case constants.form.ADDRESS_SELECTED:
+      return {
+        ...state,
+        addressSelected: action.payload,
+      };
     default:
       return state;
   }
