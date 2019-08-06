@@ -18,7 +18,7 @@ const FormModal = ({ open, editingUserId }) => {
           aria-describedby="modal__desc"
         >
           <h3 className={styles.title} id="modal__title">
-            {editingUserId !== null ? 'Edit users data' : 'Fill the form'}
+            {editingUserId !== null ? 'Edit user data' : 'Fill the form'}
           </h3>
           <div className={styles.content}>
             <Form />

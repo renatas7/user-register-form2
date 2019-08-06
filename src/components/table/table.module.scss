@@ -1,6 +1,7 @@
 .main {
   display: inline-block;
   position: relative;
+  width: 100%;
 }
 
 .table {
@@ -11,6 +12,7 @@
   border-spacing: 0;
   border-radius: var(--border-radius__lg) var(--border-radius__lg) 0 0;
   box-shadow: 4px 4px 14px 0 rgba(0, 0, 0, 0.1);
+  width: 100%;
 }
 
 .header {
@@ -19,7 +21,7 @@
 
 .headerRow {
   display: table-row;
-  text-align: left;
+  text-align: center;
   font-weight: 600;
   color: var(--color__font-dark);
   background: var(--color__table-header-bg);
@@ -28,7 +30,6 @@
 .headerCell {
   display: table-cell;
   white-space: nowrap;
-  // padding: 1rem 2rem;
 
   &:first-child {
     border-top-left-radius: var(--border-radius__lg);
