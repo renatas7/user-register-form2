@@ -47,17 +47,20 @@ const LocationInput = ({ data, dispatch, formNotValid }) => {
           <div className={styles.autocompleteDropdownDontainer}>
             {loading && <Spinner />}
             {suggestions.map(suggestion => {
-              const className = suggestion.active
-                ? 'suggestion-item--active'
-                : 'suggestion-item';
-
               const style = suggestion.active
-                ? { backgroundColor: '#ebeaeb', cursor: 'pointer' }
-                : { backgroundColor: '#ffffff', cursor: 'pointer' };
+                ? {
+                    backgroundColor: '#ebeaeb',
+                    cursor: 'pointer',
+                    borderBottom: '1px solid #ebeaeb',
+                  }
+                : {
+                    backgroundColor: '#ffffff',
+                    cursor: 'pointer',
+                    borderBottom: '1px solid #ebeaeb',
+                  };
               return (
                 <div
                   {...getSuggestionItemProps(suggestion, {
-                    className,
                     style,
                   })}
                 >
