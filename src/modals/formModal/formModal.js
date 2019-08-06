@@ -5,7 +5,7 @@ import { Backdrop } from './../../components';
 import Form from './../../blocks/form/form';
 import PropTypes from 'prop-types';
 
-const FormModal = ({ dispatch, open, editingUserId }) => {
+const FormModal = ({ open, editingUserId }) => {
   return (
     open && (
       <>
@@ -30,7 +30,7 @@ const FormModal = ({ dispatch, open, editingUserId }) => {
   );
 };
 const mapStateToProps = state => ({
-  open: state.formState.registerModalIsOpen,
+  open: state.formState.userFormModalIsOpen,
   editingUserId: state.formState.editingUserId,
 });
 

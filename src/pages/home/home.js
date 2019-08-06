@@ -98,6 +98,7 @@ const mapStateToProps = state => ({
 });
 
 Home.propTypes = {
+  dispatch: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
   usersList: PropTypes.arrayOf(
     PropTypes.shape({

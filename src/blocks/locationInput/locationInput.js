@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { actions } from './../../state';
 import styles from './locationInput.module.scss';
 import { Spinner } from '../../components';
+import PropTypes from 'prop-types';
 
 const LocationInput = ({ data, dispatch, formNotValid }) => {
   const [address, setAddress] = useState('');
@@ -76,5 +77,20 @@ const mapStateToProps = state => ({
   editingUserId: state.formState.editingUserId,
   formNotValid: state.formState.formNotValid,
 });
+
+LocationInput.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  data: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    surname: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    street: PropTypes.string.isRequired,
+    house: PropTypes.string.isRequired,
+    city: PropTypes.string.isRequired,
+    country: PropTypes.string.isRequired,
+    zipCode: PropTypes.string.isRequired,
+  }),
+  formNotValid: PropTypes.bool.isRequired,
+};
 
 export default connect(mapStateToProps)(LocationInput);

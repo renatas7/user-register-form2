@@ -2,7 +2,7 @@ import { constants } from '../constants';
 
 const INITIAL_STATE = {
   isOnSync: false,
-  registerModalIsOpen: false,
+  userFormModalIsOpen: false,
   formData: {
     id: null,
     name: '',
@@ -31,7 +31,7 @@ export const userReducer = (state = INITIAL_STATE, action) => {
     case constants.form.REGISTER_MODAL_OPEN:
       return {
         ...state,
-        registerModalIsOpen: action.payload,
+        userFormModalIsOpen: action.payload,
       };
     case constants.form.UPDATE_FILLING_FORM:
       return {

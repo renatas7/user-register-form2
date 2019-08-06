@@ -1,9 +1,9 @@
 export const formatAddressData = (formData, rawAddress) => {
-  /****** 
-    Todo:
-    crete cleaner solution insted of parising and pushing 
-    data from google geolocation input
-  ******/
+  /******
+   * Todo:
+   * crete cleaner solution insted of parising and pushing
+   * data from google geolocation input
+   ******/
 
   switch (Object.keys(rawAddress).length) {
     case 1:

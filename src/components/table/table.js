@@ -1,16 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-
 import styles from './table.module.scss';
 
-const Table = ({ children, header, filter, isEmpty }) => {
+const Table = ({ children, header, isEmpty }) => {
   const row = Array.from({ length: header.length });
 
   const renderHeader = () =>
     header.map((col, i) => (
       <span className={styles.headerCell} key={i} role="columnheader">
-        {filter ? col : <div className={styles.headerTitle}>{col}</div>}
+        <div className={styles.headerTitle}>{col}</div>
       </span>
     ));
 
@@ -36,21 +34,16 @@ const Table = ({ children, header, filter, isEmpty }) => {
         </div>
         {renderEmptyRow()}
       </div>
-      {isEmpty && <p className={styles.infoText}>Users list is empty</p>}
+      {isEmpty && <p className={styles.infoText}> User list is empty</p>}
     </div>
   );
 };
 
-export const TableRow = ({ children, url, onClick }) =>
-  url ? (
-    <Link className={styles.bodyRow} to={url} role="row">
-      {children}
-    </Link>
-  ) : (
-    <div className={styles.bodyRow} onClick={onClick} role="row">
-      {children}
-    </div>
-  );
+export const TableRow = ({ children, onClick }) => (
+  <div className={styles.bodyRow} onClick={onClick} role="row">
+    {children}
+  </div>
+);
 
 export const TableCell = ({ children }) => (
   <span className={styles.bodyCell} role="gridcell">
@@ -60,7 +53,6 @@ export const TableCell = ({ children }) => (
 
 Table.defaultProps = {
   isEmpty: false,
-  filter: false,
 };
 
 Table.propTypes = {
@@ -70,12 +62,10 @@ Table.propTypes = {
 };
 
 TableRow.defaultProps = {
-  url: null,
   onClick: () => {},
 };
 
 TableRow.propTypes = {
-  url: PropTypes.string,
   onClick: PropTypes.func,
   children: PropTypes.node.isRequired,
 };

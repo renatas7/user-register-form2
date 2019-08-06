@@ -3,7 +3,7 @@ import cn from 'classnames';
 import PropTypes from 'prop-types';
 import styles from './button.module.scss';
 
-const Button = ({ children, color, icon, url, classes, ...rest }) => {
+const Button = ({ children, color, classes, ...rest }) => {
   return (
     <button
       className={cn(styles.button, styles[color], classes.button)}
@@ -22,7 +22,6 @@ Button.propTypes = {
   children: PropTypes.node.isRequired,
   color: PropTypes.oneOf(['primary', 'dim', 'light', 'dark', 'outline'])
     .isRequired,
-  icon: PropTypes.string,
   classes: PropTypes.shape({
     button: PropTypes.string,
   }),

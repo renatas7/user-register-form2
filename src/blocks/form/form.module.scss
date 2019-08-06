@@ -3,7 +3,6 @@
   margin-top: 0rem;
   margin-left: 1rem;
   font-size: 1rem;
-  // text-align: left;
 }
 
 .actions {
@@ -15,17 +14,24 @@
 
 .addressInline {
   display: flex;
+  width: 100%;
   input:first-child {
     margin-right: 1rem;
+    width: 70%;
   }
   input:last-child {
-    width: 40%;
+    width: 25%;
   }
 }
 
 .inline {
   display: flex;
+  width: 100%;
   input:first-child {
     margin-right: 1rem;
+    width: 50%;
+  }
+  input:last-child {
+    width: 47%;
   }
 }

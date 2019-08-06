@@ -56,7 +56,6 @@ function* setUserDataSaga(action) {
       yield put(actions.form.clearForm());
       yield put(actions.form.setRegisterModalOpenAction(false));
       yield put(actions.form.formNotValid(false));
-      // yield put(actions.form.addressSelected(false));
     } else {
       yield put(actions.form.formNotValid(true));
     }
@@ -74,17 +73,7 @@ function* formatAddressDataSaga(action) {
     const formData = action.payload.data;
     const results = yield call(geocodeByAddress, address);
     const rawAddress = { ...results[0].address_components };
-
-    // const addressData = formData
-    // addressData.street = rawAddress[1].short_name;
-    // addressData.house = rawAddress[0].short_name;
-    // addressData.city = rawAddress[2].short_name;
-    // addressData.country = rawAddress[5].long_name;
-    // addressData.zipCode = rawAddress[6].short_name;
-    console.log(rawAddress);
-    console.log(formData);
     const formatted = formatAddressData(formData, rawAddress);
-    console.log(formatted);
 
     yield put(actions.form.updateAddressData(formatted));
     yield put(actions.form.addressSelected(true));
